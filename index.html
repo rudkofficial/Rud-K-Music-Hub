@@ -1,52 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MuzikiUG — Stream & Download Ugandan Music</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuzikiUG - Real</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f0f0f;color:white}
+header{background:#ff6600;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
+.card{background:#1e1e1e;margin:12px;border-radius:12px;padding:12px}
+button{background:#ff6600;border:0;color:white;padding:10px 15px;border-radius:8px;font-weight:bold}
+input{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:0}
+audio{width:100%}
+</style>
 </head>
-<body class="bg-neutral-950 text-neutral-100 font-sans min-h-screen">
+<body>
+<header><h2>MuzikiUG 🇺🇬 REAL</h2><small>70% to Artist • 10% to You</small></header>
 
-  <!-- Header -->
-  <header class="p-5 border-b border-neutral-800 flex justify-between items-center max-w-5xl mx-auto">
-    <h1 class="text-2xl font-black text-amber-500">MuzikiUG</h1>
-    <button onclick="registerMoMo()" class="bg-amber-500 text-neutral-950 font-bold px-4 py-2 rounded-xl text-xs">
-      Register (2,000 UGX)
-    </button>
-  </header>
+<div class="card">
+<h3>🎤 Artist Real Upload</h3>
+<input id="artistName" placeholder="Your Artist Name">
+<input id="songTitle" placeholder="Song Title (e.g. Kipenzi UG)">
+<input type="file" id="mp3File" accept="audio/*">
+<button onclick="realUpload()">UPLOAD NOW - REAL</button>
+<p id="upStatus"></p>
+</div>
 
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto p-6 space-y-6">
-    <div class="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl">
-      <h2 class="text-xl font-bold text-amber-400 mb-2">Download Top Songs (500 UGX)</h2>
-      <p class="text-xs text-neutral-400 mb-6">70% to 90% goes directly to the artist!</p>
+<div class="card">
+<input id="search" placeholder="Search songs..." oninput="renderSongs()">
+</div>
 
-      <!-- Song List -->
-      <div id="song-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-neutral-950 p-4 border border-neutral-800 rounded-xl flex justify-between items-center">
-          <div>
-            <h3 class="font-bold">Kipenzi UG</h3>
-            <p class="text-xs text-neutral-400">Liam Voice</p>
-          </div>
-          <button onclick="payDownload('Kipenzi UG')" class="bg-amber-500 text-neutral-950 font-bold px-3 py-1.5 rounded-lg text-xs">
-            Download 500 UGX
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
+<div id="songList"></div>
 
-  <script>
-    function registerMoMo() {
-      let phone = prompt("Enter MTN/Airtel Phone Number for 2,000 UGX Registration:");
-      if (phone) alert("MoMo prompt sent to " + phone + "! Welcome to MuzikiUG.");
-    }
+<script>
+let songs = JSON.parse(localStorage.getItem('muziki_songs')||'[{"title":"Kipenzi UG","artist":"Rud-K","url":""}]');
 
-    function payDownload(song) {
-      let phone = prompt("Enter MoMo number to pay 500 UGX for " + song + ":");
-      if (phone) alert("Payment received! Download started for " + song);
-    }
-  </script>
+function realUpload(){
+ const fileInput = document.getElementById('mp3File');
+ const title = document.getElementById('songTitle').value;
+ const artist = document.getElementById('artistName').value || 'Rud-K';
+ if(!fileInput.files[0] ||!title){ alert('Select MP3 file and Title!'); return; }
+ const file = fileInput.files[0];
+ const url = URL.createObjectURL(file); // REAL file URL
+ songs.unshift({title:title, artist:artist, url:url, fileName:file.name});
+ localStorage.setItem('muziki_songs', JSON.stringify(songs.map(s=>({title:s.title,artist:s.artist,url:''}))));
+ // Save real file in memory for this session
+ window.realFiles = window.realFiles || {};
+ window.realFiles[title] = url;
+ document.getElementById('upStatus').innerText = '✅ REAL UPLOADED: ' + file.name + ' - Now visible below!';
+ renderSongs();
+}
+function renderSongs(){
+ const q = (document.getElementById('search').value||'').toLowerCase();
+ const list = document.getElementById('songList');
+ list.innerHTML='';
+ songs.filter(s=> s.title.toLowerCase().includes(q)).forEach((s,i)=>{
+   const realUrl = (window.realFiles && window.realFiles[s.title]) || s.url;
+   list.innerHTML+=`<div class="card"><b>${s.title}</b> - ${s.artist}<br>${realUrl?`<audio controls src="${realUrl}"></audio><br><a href="${realUrl}" download><button>Download (500 UGX)</button></a>`:`<small>Demo song - upload real MP3 above to play</small>`}</div>`;
+ });
+}
+renderSongs();
+</script>
 </body>
 </html>
