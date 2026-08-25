@@ -107,15 +107,34 @@ const firebaseConfig = {
   apiKey: "AIzaSyDvJGQkEwNGJltvp4CXFX2maWBqX8sLw0",
   authDomain: "muzikiug-61e1a.firebaseapp.com",
   projectId: "muzikiug-61e1a",
+  storageBucket: "muzikiug-61e1a.firebasestorage.a
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDVlGCqkEwnGJlvp4CXFX2maW_aQANnCPc",
+  authDomain: "muzikiug-61e1a.firebaseapp.com",
+  projectId: "muzikiug-61e1a",
   storageBucket: "muzikiug-61e1a.firebasestorage.app",
   messagingSenderId: "794556375231",
-  appId: "1:794556375231:web:532874de78f8e8b7d7b5a0",
-  measurementId: "G-1TTVJ22LD9"
+  appId: "1:794556375231:web:532874de78f8164567660a"
 };
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const app = initializeApp(firebaseConfig);
+window.auth = getAuth(app);
+window.db = getFirestore(app);
+window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+window.doc = doc;
+window.setDoc = setDoc;
+window.collection = collection;
+window.getDocs = getDocs;
+window.addDoc = addDoc;
+
+console.log("✅ FIREBASE REAL CONNECTED - muzikiug-61e1a");
+</script>
 
 let app, db, auth; try{ app=initializeApp(firebaseConfig); db=getFirestore(app); auth=getAuth(app); }catch(e){ console.log("Add real Firebase later"); }
 
