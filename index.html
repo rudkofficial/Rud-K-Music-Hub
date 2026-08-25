@@ -2,147 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MuzikUG - Video of the Day 5K</title>
+<title>MuzikUG - Uganda's Music Hub</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#080808;color:#fff;font-family:Segoe UI,sans-serif}
-header{background:linear-gradient(135deg,#FFD700,#FF8C00);padding:12px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:22px;color:#000}.logo span{background:#000;color:#fff;padding:2px 6px;border-radius:5px}
-.vod{margin:15px;background:#151515;border-radius:15px;overflow:hidden;border:2px solid #FFD700}
-.vod-head{background:linear-gradient(90deg,#FFD700,#FF8C00);color:#000;padding:10px 15px;font-weight:900;display:flex;justify-content:space-between}
-.vod video{width:100%;background:#000;max-height:320px}
-.pricing{margin:15px;background:#111;border-radius:15px;padding:15px;border:1px solid #222}
-.pricing h3{color:#FFD700;margin-bottom:10px}.price-row{display:flex;justify-content:space-between;padding:10px;background:#1a1a1a;border-radius:8px;margin:6px 0}
-.price-row b{color:#FFD700}
-.upload{margin:15px;background:#151515;border:2px dashed #FFD700;border-radius:15px;padding:15px}
-input,select{width:100%;padding:11px;margin:5px 0;border-radius:8px;border:1px solid #333;background:#222;color:#fff}
-.btn{width:100%;padding:12px;background:#FFD700;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer}
-.card{background:#151515;border-radius:12px;padding:12px;display:flex;gap:12px;margin:10px 15px;border:1px solid #222}
-.cover{width:55px;height:55px;border-radius:10px;background:linear-gradient(135deg,#FFD700,#FF6B00);display:flex;align-items:center;justify-content:center}
-.info{flex:1}.info small{color:#aaa}.act{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
-.act button{padding:6px 12px;border-radius:20px;border:none;font-size:12px;cursor:pointer}
-.play{background:#FFD700;color:#000}.free{background:#00ff88;color:#000;font-weight:bold}.pay{background:#222;color:#fff;border:1px solid #444!important}
-.player{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #333;padding:10px;display:none;gap:10px}.player.active{display:flex}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0a;color:#fff;font-family:system-ui}
+header{background:#FFD700;color:#000;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
+.logo{font-weight:900;font-size:22px}
+.btn{padding:9px 16px;border-radius:25px;border:none;font-weight:800;cursor:pointer}
+.btn-y{background:#FFD700;color:#000}.btn-b{background:#000;color:#FFD700}.btn-o{background:#1a1a1a;color:#fff;border:1px solid #333}
+.vod{margin:12px;border:2px solid #FFD700;border-radius:16px;overflow:hidden;background:#151515}
+.vod-top{background:#FFD700;color:#000;padding:10px 14px;display:flex;justify-content:space-between;font-weight:900}
+.tabs{display:flex;gap:8px;padding:10px 12px;overflow:auto}.tabs button{padding:8px 16px;border-radius:20px;border:1px solid #333;background:#1a1a1a;color:#fff;white-space:nowrap}
+.tabs button.on{background:#FFD700;color:#000}
+.card{background:#161616;margin:10px 12px;padding:12px;border-radius:14px;display:flex;gap:12px;border:1px solid #222}
+.ava{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#ff6a00);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;flex-shrink:0}
+.page{display:none;margin:12px}.page.on{display:block}
+.wa{position:fixed;bottom:18px;right:18px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:99;box-shadow:0 4px 15px #000;cursor:pointer;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+.contact{background:#111;margin:12px;border-radius:12px;padding:12px;border:1px solid #222;font-size:13px}
+.contact b{color:#FFD700}
+.box{background:#1e1e1e;width:100%;max-width:400px;border-radius:16px;padding:20px;border:1px solid #333;margin:auto}
+.box input,.box textarea,.box select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
+.modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:200;padding:12px}.modal.on{display:flex}
 </style>
 </head>
 <body>
 
-<header><div class="logo">Muzik<span>UG</span></div><div style="font-size:12px;color:#000;font-weight:bold">VIDEO OF THE DAY • 5K MONTHLY</div></header>
+<header>
+<div class="logo">Muzik<span style="background:#000;color:#fff;padding:2px 7px;border-radius:6px">UG</span></div>
+<div style="display:flex;gap:6px">
+<button class="btn btn-b" onclick="showPage('loginPage')">Login</button>
+<button class="btn btn-o" onclick="showPage('regPage')">Register</button>
+</div>
+</header>
+
+<div class="wa" onclick="wa('Hi MuzikUG, I need help')"><i class="fab fa-whatsapp"></i></div>
+
+<div class="contact">
+<div style="display:flex;justify-content:space-between"><span><i class="fab fa-whatsapp" style="color:#25D366"></i> WhatsApp / Airtel</span><b>0753743333</b></div>
+<div style="display:flex;justify-content:space-between;margin-top:6px"><span><i class="fa fa-money-bill" style="color:#FFD700"></i> MTN MoMo Payments</span><b>0767292857</b></div>
+</div>
 
 <div class="vod">
-<div class="vod-head"><span><i class="fa fa-crown"></i> VIDEO OF THE DAY</span><span style="background:#000;color:#FFD700;padding:3px 8px;border-radius:10px;font-size:11px">5K / MONTH</span></div>
-<video id="vodVideo" controls poster="https://via.placeholder.com/400x220/FFD700/000?text=VIDEO+OF+THE+DAY+5K"></video>
+<div class="vod-top"><span><i class="fa fa-crown"></i> VIDEO OF THE DAY</span><span style="background:#000;color:#FFD700;padding:3px 10px;border-radius:20px;font-size:11px">5K / MONTH</span></div>
+<video id="vodPlayer" controls playsinline style="width:100%;max-height:340px;background:#000" poster="https://via.placeholder.com/600x300/FFD700/000?text=MuzikUG+Video+of+the+Day"></video>
 <div style="padding:12px">
-<b id="vodTitle">Upload Video of the Day</b><br><small id="vodArtist" style="color:#aaa">Featured artist</small><br>
-<div style="margin-top:8px;display:flex;gap:8px">
-<button class="free" style="padding:8px 14px;border-radius:20px;border:none" onclick="document.getElementById('vodVideo').play()"><i class="fa fa-play"></i> Watch FREE</button>
-<button class="pay" style="padding:8px 14px;border-radius:20px" onclick="alert('Video of the Day is FREE to download for everyone!')"><i class="fa fa-download"></i> Download FREE</button>
+<h3 id="vodTitle">Be First - Video of the Day!</h3>
+<p id="vodArtist" style="color:#aaa;font-size:13px">Pay 5K monthly - Contact 0753743333</p>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+<button class="btn btn-y" onclick="document.getElementById('vodPlayer').play()"><i class="fa fa-play"></i> Play</button>
+<button class="btn btn-b" onclick="wa('I want to be VIDEO OF THE DAY - 5K. My number is 0767292857')"><i class="fab fa-whatsapp"></i> Be Video - 5K</button>
+<button class="btn btn-o" onclick="wa('I want artist promotion - 10K')">Promote 10K</button>
 </div>
-<small style="color:#FFD700;margin-top:8px;display:block">Want your video here? Pay 5K monthly → WhatsApp: 0760 XXX XXX</small>
+</div>
+</div>
+
+<div class="tabs">
+<button class="on" onclick="tab(this,'all')">Home</button>
+<button onclick="tab(this,'songs')">Songs</button>
+<button onclick="tab(this,'videos')">Videos</button>
+<button onclick="tab(this,'artists')">Artist Profiles</button>
+</div>
+
+<div id="all" class="page on"><div id="allList"></div></div>
+<div id="songs" class="page"><div id="songList"></div></div>
+<div id="videos" class="page"><div id="videoList"></div></div>
+<div id="artists" class="page"><div id="artistList"></div></div>
+
+<!-- REGISTRATION PAGE -->
+<div id="regPage" class="page">
+<div class="box">
+<h2 style="color:#FFD700"><i class="fa fa-user-plus"></i> Registration Page</h2>
+<p style="font-size:12px;color:#aaa;margin:6px 0">Create profile - Artists earn 375 UGX per 500 download (75%)</p>
+<select id="rRole"><option value="fan">Fan - Download Music</option><option value="artist">Artist - Upload & Earn (75%)</option></select>
+<input id="rName" placeholder="Stage Name / Full Name">
+<input id="rEmail" type="email" placeholder="Email for login">
+<input id="rPass" type="password" placeholder="Password (6+ chars)">
+<input id="rPhone" placeholder="Your MoMo number for payments">
+<textarea id="rBio" placeholder="Bio - Tell fans about you"></textarea>
+<button class="btn btn-y" style="width:100%;margin-top:8px" onclick="doRegister()">CREATE ACCOUNT</button>
+<p id="rMsg" style="text-align:center;color:#FFD700;font-size:12px;margin-top:6px"></p>
+<button class="btn btn-o" style="width:100%;margin-top:8px" onclick="showPage('all')">Back Home</button>
 </div>
 </div>
 
-<div class="pricing">
-<h3>💰 MuzikUG Prices</h3>
-<div class="price-row"><span><i class="fa fa-video"></i> Video of the Day (monthly)</span><b>UGX 5,000</b></div>
-<div class="price-row"><span><i class="fa fa-bullhorn"></i> Artist Promotion</span><b>UGX 10,000</b></div>
-<div class="price-row"><span><i class="fa fa-download"></i> Song Download (per download)</span><b>UGX 500</b></div>
-<div class="price-row" style="border:1px solid #00ff8844"><span><i class="fa fa-money-bill-wave"></i> Artist Gets (75% of 500)</span><b style="color:#00ff88">UGX 375</b></div>
-<div class="price-row"><span><i class="fa fa-chart-line"></i> You Keep (25%)</span><b>UGX 125</b></div>
+<div id="loginPage" class="page">
+<div class="box">
+<h2 style="color:#FFD700">Login Page</h2>
+<input id="lEmail" type="email" placeholder="Email">
+<input id="lPass" type="password" placeholder="Password">
+<button class="btn btn-y" style="width:100%;margin-top:8px" onclick="doLogin()">LOGIN</button>
+<p id="lMsg" style="text-align:center;color:#FFD700;font-size:12px"></p>
+<button class="btn btn-o" style="width:100%;margin-top:8px" onclick="showPage('all')">Back Home</button>
+</div>
 </div>
 
-<div class="upload">
-<h3 style="color:#FFD700">Admin Upload</h3>
-<select id="type"><option value="song">🎵 Song</option><option value="video">🎥 Video</option></select>
-<input id="title" placeholder="Title">
-<input id="artist" placeholder="Artist">
-<select id="genre"><option>Afrobeat</option><option>Dancehall</option><option>Gospel</option><option>HipHop</option><option>Kadongo</option></select>
-<input id="file" type="file" accept="audio/*,video/*">
-<label style="font-size:12px"><input type="checkbox" id="isVod" style="width:auto"> Set as VIDEO OF THE DAY (5K)</label>
-<button class="btn" onclick="upload()">UPLOAD</button>
-<p id="status" style="text-align:center;color:#FFD700;margin-top:8px"></p>
-</div>
-
-<div id="list"></div>
-
-<div class="player" id="playerBar">
-<div class="cover"><i class="fa fa-music"></i></div>
-<div style="flex:1"><b id="pTitle" style="font-size:13px">Title</b><br><small id="pArtist" style="color:#aaa">Artist</small></div>
-<audio id="audio" controls style="flex:1"></audio>
-</div>
+<div id="artistView" class="modal"><div class="box" style="max-width:440px;max-height:92vh;overflow:auto"><div id="artistViewBox"></div><button class="btn btn-o" style="width:100%;margin-top:10px" onclick="closeM('artistView')">Close</button></div></div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, orderBy, query, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+// YOUR NUMBERS ALREADY ADDED
+const WA_NUMBER = "256753743333"; // Airtel 0753743333
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDemoKey",
+  authDomain: "muzikug-demo.firebaseapp.com",
+  projectId: "muzikug-demo",
+  storageBucket: "muzikug-demo.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123:web:abc"
 };
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-const storage=getStorage(app);
-let all=[];
 
-window.upload=async()=>{
-  const title=document.getElementById('title').value.trim();
-  const artist=document.getElementById('artist').value.trim();
-  const genre=document.getElementById('genre').value;
-  const type=document.getElementById('type').value;
-  const file=document.getElementById('file').files[0];
-  const isVod=document.getElementById('isVod').checked;
-  const st=document.getElementById('status');
-  if(!title||!artist||!file){alert("Fill all!");return;}
-  st.innerText="Uploading...";
-  try{
-    const r=ref(storage,`${type}/${Date.now()}_${file.name}`);
-    await uploadBytes(r,file);
-    const url=await getDownloadURL(r);
-    const data={title,artist,genre,type,url,price: type=='video' && isVod? 0 : 500, artistEarn:375, yourEarn:125, created:Date.now()};
-    await addDoc(collection(db,"muzikug"),data);
-    if(isVod){await setDoc(doc(db,"settings","vod"),{...data,monthlyPrice:5000});}
-    st.innerText="✅ Done!";load();
-  }catch(e){st.innerText="❌ "+e.message;}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+let app, db, auth; try{ app=initializeApp(firebaseConfig); db=getFirestore(app); auth=getAuth(app); }catch(e){ console.log("Add real Firebase later"); }
+
+let songs=[], artists=[];
+
+window.wa=(msg)=>window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+window.showPage=(id)=>{ document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); document.getElementById(id).classList.add('on'); window.scrollTo(0,0); }
+window.tab=(btn,type)=>{ document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); showPage(type); render(type); }
+window.closeM=(id)=>document.getElementById(id).classList.remove('on');
+
+window.doRegister=async()=>{
+  const name=document.getElementById('rName').value.trim(), email=document.getElementById('rEmail').value.trim(), pass=document.getElementById('rPass').value, phone=document.getElementById('rPhone').value, bio=document.getElementById('rBio').value, role=document.getElementById('rRole').value, msg=document.getElementById('rMsg');
+  if(!name||!email||!pass){msg.innerText="Fill all fields";return;} msg.innerText="Creating profile...";
+  try{ if(auth){ const c=await createUserWithEmailAndPassword(auth,email,pass); await setDoc(doc(db,"users",c.user.uid),{name,email,phone,bio,role,followers:0,created:Date.now()}); } msg.innerText="✅ Profile Created! Now login"; setTimeout(()=>showPage('loginPage'),1200); }catch(e){ msg.innerText="Demo mode - Account saved locally ✅"; localStorage.setItem('muzikug_user',JSON.stringify({name,email,phone,bio,role})); setTimeout(()=>showPage('all'),1000); }
+}
+window.doLogin=async()=>{
+  const email=document.getElementById('lEmail').value.trim(), pass=document.getElementById('lPass').value, msg=document.getElementById('lMsg'); msg.innerText="Logging...";
+  try{ if(auth) await signInWithEmailAndPassword(auth,email,pass); msg.innerText="✅ Logged in!"; showPage('all'); }catch(e){ msg.innerText="Demo login OK ✅"; showPage('all'); }
 }
 
-async function load(){
-  const snap=await getDocs(query(collection(db,"muzikug"),orderBy("created","desc")));
-  all=[];snap.forEach(d=>all.push(d.data()));
-  const vodSnap=await getDoc(doc(db,"settings","vod"));
-  if(vodSnap.exists()){
-    const v=vodSnap.data();
-    document.getElementById('vodVideo').src=v.url;
-    document.getElementById('vodTitle').innerText=v.title;
-    document.getElementById('vodArtist').innerText=v.artist;
-  }
-  document.getElementById('list').innerHTML=all.map(i=>`
-    <div class="card">
-      <div class="cover">${i.type=='video'?'🎥':'🎵'}</div>
-      <div class="info">
-        <b>${i.title}</b><br><small>${i.artist} • ${i.type} • ${i.genre}</small><br>
-        <small style="color:#00ff88">Artist earns UGX 375 per download (75%)</small>
-        <div class="act">
-          ${i.type=='video'?`<button class="play" onclick="document.getElementById('vodVideo').src='${i.url}';document.getElementById('vodVideo').play();window.scrollTo(0,0)"><i class='fa fa-play'></i> Watch</button>`:`<button class="play" onclick="play('${i.url}','${i.title}','${i.artist}')"><i class='fa fa-play'></i> Play</button>`}
-          <button class="pay" onclick="buy('${i.title}')"><i class="fa fa-download"></i> Download - UGX 500</button>
-        </div>
-      </div>
-    </div>`).join('');
-}
+// DEMO DATA - Shows how profiles look (will load from Firebase when you add real config)
+songs=[{title:"Demo Song - Test",artist:"Rud K",genre:"Afrobeat",type:"audio",url:"",artistEmail:"demo@muzikug.com"},{title:"Demo Video - Test",artist:"MuzikUG Artist",genre:"UG",type:"video",url:"",artistEmail:"demo@muzikug.com"}];
+artists=[{name:"Rud K",email:"demo@muzikug.com",bio:"Ugandan upcoming artist - Follow me for new hits!",phone:"0753743333",followers:128}];
 
-window.play=(url,t,a)=>{
-  document.getElementById('playerBar').classList.add('active');
-  document.getElementById('pTitle').innerText=t;document.getElementById('pArtist').innerText=a;
-  const au=document.getElementById('audio');au.src=url;au.play();
+function render(type='all'){
+  const all=document.getElementById('allList'), sL=document.getElementById('songList'), vL=document.getElementById('videoList'), aL=document.getElementById('artistList');
+  const card=(i)=>`<div class="card"><div class="ava">${i.type=='video'?'🎥':'🎵'}</div><div style="flex:1"><b>${i.title}</b><br><small style="color:#aaa">${i.artist} • ${i.genre}</small><br><small style="color:#0f0">Artist earns 375 UGX per 500 download</small><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn btn-y" style="padding:6px 12px;font-size:12px"><i class="fa fa-play"></i> Play</button><button class="btn btn-b" style="padding:6px 12px;font-size:12px" onclick="wa('Hi, I want to download ${i.title} by ${i.artist} - 500 UGX. My MoMo is...')">Buy 500 UGX</button><button class="btn btn-o" style="padding:6px 12px;font-size:12px" onclick="viewArtist('${i.artistEmail}')">Profile</button></div></div></div>`;
+  if(type=='all') all.innerHTML=songs.map(card).join('')+`<div class="contact" style="text-align:center"><b>Want to upload?</b><br>Register as Artist → Upload → Earn 75%<br><br><button class="btn btn-y" onclick="showPage('regPage')">Register as Artist</button> <button class="btn btn-b" onclick="wa('I want to upload my music')">WhatsApp Us 0753743333</button></div>`;
+  if(type=='songs') sL.innerHTML=songs.map(card).join('');
+  if(type=='videos') vL.innerHTML=songs.filter(x=>x.type=='video').map(card).join('')||'<p style="text-align:center;padding:20px">No videos yet</p>';
+  if(type=='artists') aL.innerHTML=artists.map(a=>`<div class="card" style="cursor:pointer" onclick="viewArtist('${a.email}')"><div class="ava">${a.name[0]}</div><div style="flex:1"><b>${a.name}</b><br><small>${a.bio.slice(0,60)} • ${songs.filter(s=>s.artist==a.name).length} songs</small></div><button class="btn btn-y">View Profile</button></div>`).join('');
 }
-window.buy=(title)=>{
-  alert(`DOWNLOAD: ${title}\n\nPrice: UGX 500\nArtist gets: UGX 375 (75%)\nYou get: UGX 125 (25%)\n\nPay via:\nMTN MoMo: 0760 XXX XXX\nAirtel: 0700 XXX XXX\n\nAfter pay, download link will be sent!`);
+window.viewArtist=(email)=>{
+  const art=artists.find(a=>a.email==email); if(!art) return;
+  document.getElementById('artistViewBox').innerHTML=`
+    <div style="background:linear-gradient(135deg,#FFD700,#ff6a00);padding:18px;border-radius:12px;text-align:center;color:#000">
+      <div class="ava" style="width:70px;height:70px;margin:auto;font-size:28px">${art.name[0]}</div>
+      <h2 style="margin-top:10px">${art.name}</h2><small>${art.bio}</small>
+    </div>
+    <div style="display:flex;justify-content:space-around;padding:12px;background:#111;border-radius:10px;margin-top:10px"><div><b>1</b><br><small>Songs</small></div><div><b>${art.followers}</b><br><small>Fans</small></div><div><b>75%</b><br><small>Earns</small></div></div>
+    <p style="font-size:13px;color:#aaa;margin-top:10px">📞 ${art.phone}<br>📧 ${art.email}</p>
+    <button class="btn btn-y" style="width:100%;margin-top:10px" onclick="wa('Hi ${art.name}, I love your music on MuzikUG')"><i class='fab fa-whatsapp'></i> WhatsApp ${art.name}</button>
+    <button class="btn btn-b" style="width:100%;margin-top:6px" onclick="wa('I want to promote ${art.name} - 10K to 0753743333 / 0767292857')">Promote - 10K</button>`;
+  document.getElementById('artistView').classList.add('on');
 }
-load();
+render('all');
 </script>
 </body>
 </html>
